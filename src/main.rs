@@ -16,7 +16,13 @@ fn main() {
 
     println!("The secret number is: {secret_number}");
 
-    println!("You guessed: {guess}")
+    println!("You guessed: {guess}");
+
+    test_func()
 }
 
 // comment
+
+fn test_func() {
+    println!("nothing to see here");
+}
