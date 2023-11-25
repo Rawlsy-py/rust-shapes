@@ -1,28 +1,30 @@
-use rand::Rng;
+mod circle;
+
 use std::io;
 
+
 fn main() {
-    println!("Guess the number!");
+    // Welcome Message
+    println!("Welcome to Rust Shapes Calculator");
 
-    println!("Please input your guess.");
-
-    let secret_number = rand::thread_rng().gen_range(1..=100);
-
-    let mut guess = String::new();
+    let mut input = String::new();
 
     io::stdin()
-        .read_line(&mut guess)
+        .read_line(&mut input)
         .expect("Failed to read line");
 
-    println!("The secret number is: {secret_number}");
+    let input = input.trim();
 
-    println!("You guessed: {guess}");
+    let number: f64 = match input.parse() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("Please enter a valid number");
+            return;
+        }
+    };
 
-    test_func()
-}
+    let radius = number;
 
-// comment
-
-fn test_func() {
-    println!("nothing to see here");
+    let area = circle::calculate_area(radius);
+    println!("Area of the circle: {}", area);
 }
