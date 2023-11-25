@@ -1,5 +1,6 @@
 mod circle;
 mod rectangle;
+mod square;
 
 use std::io;
 
@@ -60,8 +61,25 @@ fn main() {
         let area = rectangle::calculate_area(length, width);
         println!("Area of the rectangle: {}", area);
 
+    } else if selection == "square" {
+        println!("Enter the length of one of the squares sides:");
+
+        let mut sq_length = String::new();
+        io::stdin().read_line(&mut sq_length).expect("Failed to read line");
+
+        let sq_length: f64 = match sq_length.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please enter a valid number");
+                return;
+            }
+        };
+
+        let area = square::calculate_area(sq_length);
+        println!("Area of the circle: {}", area);
+
     } else {
-        println!("Shape not recognized. Please enter 'Circle' or 'Rectangle'.");
+        println!("Shape not recognized. Please enter 'Circle', 'Rectangle' or 'Square'.");
     }
 
     println!("Thank you, have a nice day!");
