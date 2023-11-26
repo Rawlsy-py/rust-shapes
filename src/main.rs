@@ -1,6 +1,7 @@
 mod circle;
 mod rectangle;
 mod square;
+mod triangle;
 
 use std::io;
 
@@ -29,7 +30,6 @@ fn main() {
 
         let area = circle::calculate_area(radius);
         println!("Area of the circle: {}", area);
-
     } else if selection == "rectangle" {
         println!("Enter the length and width of the rectangle, separated by a space:");
 
@@ -60,7 +60,6 @@ fn main() {
 
         let area = rectangle::calculate_area(length, width);
         println!("Area of the rectangle: {}", area);
-
     } else if selection == "square" {
         println!("Enter the length of one of the squares sides:");
 
@@ -77,10 +76,38 @@ fn main() {
 
         let area = square::calculate_area(sq_length);
         println!("Area of the circle: {}", area);
+    } else if selection == "triangle" {
+        println!("Enter the base and height of the triangle, separated by a space:");
 
+        let mut dimensions = String::new();
+        io::stdin().read_line(&mut dimensions).expect("Failed to read line");
+
+        let parts: Vec<&str> = dimensions.trim().split_whitespace().collect();
+        if parts.len() != 2 {
+            println!("Please enter two numbers separated by a space.");
+            return;
+        }
+
+        let height: f64 = match parts[0].parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please enter valid numbers");
+                return;
+            }
+        };
+
+        let base: f64 = match parts[1].parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please enter valid numbers");
+                return;
+            }
+        };
+
+        let area = triangle::calculate_area(height, base);
+        println!("Area of the rectangle: {}", area);
     } else {
-        println!("Shape not recognized. Please enter 'Circle', 'Rectangle' or 'Square'.");
+        println!("Shape not recognized. Please enter 'Circle', 'Rectangle', 'Triangle' or 'Square'.");
     }
-
     println!("Thank you, have a nice day!");
 }
