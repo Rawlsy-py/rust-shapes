@@ -20,3 +20,9 @@ cargo build
 ```
 
 This will run the application in the terminal.
+
+### To Do
+
+- [ ] While Loop for application rather than end after each usage.
+- [ ] Learning Unit and Component Testing
+- [ ] API application to serve to front end?
