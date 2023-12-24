@@ -10,7 +10,9 @@ fn main() {
     println!("What Shape would you like to calculate the area of?");
 
     let mut selection = String::new();
-    io::stdin().read_line(&mut selection).expect("Failed to read line");
+    io::stdin()
+        .read_line(&mut selection)
+        .expect("Failed to read line");
 
     let selection = selection.trim().to_lowercase();
 
@@ -18,7 +20,9 @@ fn main() {
         println!("Enter the radius of the circle:");
 
         let mut radius_str = String::new();
-        io::stdin().read_line(&mut radius_str).expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut radius_str)
+            .expect("Failed to read line");
 
         let radius: f64 = match radius_str.trim().parse() {
             Ok(num) => num,
@@ -34,7 +38,9 @@ fn main() {
         println!("Enter the length and width of the rectangle, separated by a space:");
 
         let mut dimensions = String::new();
-        io::stdin().read_line(&mut dimensions).expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut dimensions)
+            .expect("Failed to read line");
 
         let parts: Vec<&str> = dimensions.trim().split_whitespace().collect();
         if parts.len() != 2 {
@@ -64,7 +70,9 @@ fn main() {
         println!("Enter the length of one of the squares sides:");
 
         let mut sq_length = String::new();
-        io::stdin().read_line(&mut sq_length).expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut sq_length)
+            .expect("Failed to read line");
 
         let sq_length: f64 = match sq_length.trim().parse() {
             Ok(num) => num,
@@ -75,12 +83,14 @@ fn main() {
         };
 
         let area = square::calculate_area(sq_length);
-        println!("Area of the circle: {}", area);
+        println!("Area of the square: {}", area);
     } else if selection == "triangle" {
         println!("Enter the base and height of the triangle, separated by a space:");
 
         let mut dimensions = String::new();
-        io::stdin().read_line(&mut dimensions).expect("Failed to read line");
+        io::stdin()
+            .read_line(&mut dimensions)
+            .expect("Failed to read line");
 
         let parts: Vec<&str> = dimensions.trim().split_whitespace().collect();
         if parts.len() != 2 {
@@ -107,7 +117,9 @@ fn main() {
         let area = triangle::calculate_area(height, base);
         println!("Area of the rectangle: {}", area);
     } else {
-        println!("Shape not recognized. Please enter 'Circle', 'Rectangle', 'Triangle' or 'Square'.");
+        println!(
+            "Shape not recognized. Please enter 'Circle', 'Rectangle', 'Triangle' or 'Square'."
+        );
     }
     println!("Thank you, have a nice day!");
 }
